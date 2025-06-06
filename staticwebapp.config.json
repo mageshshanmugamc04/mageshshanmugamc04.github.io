@@ -1,0 +1,27 @@
+{
+  "routes": [
+    {
+      "route": "/*",
+      "serve": "/index.html"
+    }
+  ],
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": [
+      "*.js",
+      "*.css",
+      "*.png",
+      "*.jpg",
+      "*.svg",
+      "*.gif",
+      "*.pdf"
+    ]
+  },
+  "mimeTypes": {
+    ".html": "text/html",
+    ".js": "text/javascript",
+    ".css": "text/css",
+    ".json": "application/json",
+    "*.ico": "image/x-icon"
+  }
+}

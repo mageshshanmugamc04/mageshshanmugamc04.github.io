@@ -1,0 +1,21 @@
+{
+  "name": "magesh-cv",
+  "version": "1.0.0",
+  "description": "Magesh Shanmugam's CV Website",
+  "main": "index.html",
+  "scripts": {
+    "preview": "echo 'Previewing locally...'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "cv",
+    "portfolio",
+    "resume"
+  ],
+  "author": "Magesh Shanmugam C",
+  "license": "MIT"
+}

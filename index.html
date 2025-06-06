@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magesh Shanmugam C - Software Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .cv-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .profile-picture:hover {
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .upload-text {
+            font-size: 0.7em;
+            text-align: center;
+            line-height: 1.2;
+            font-weight: normal;
+        }
+        
+        .profile-info {
+            text-align: center;
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .name {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .title {
+            font-size: 1.5em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .experience-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95em;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 0;
+        }
+        
+        .sidebar {
+            background: #f8f9fa;
+            padding: 40px 30px;
+            border-right: 3px solid #e9ecef;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #3498db;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 30px;
+            height: 3px;
+            background: #e74c3c;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+        }
+        
+        .skill-item {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: default;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        .cert-item {
+            background: linear-gradient(135deg, #27ae60, #229954);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            font-weight: 500;
+            text-align: center;
+        }
+        
+        .job {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .job:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .job-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .company {
+            font-size: 1.1em;
+            color: #3498db;
+            font-weight: 600;
+        }
+        
+        .duration {
+            background: #e74c3c;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        
+        .project {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .project-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        
+        .project-duration {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-bottom: 12px;
+        }
+        
+        .project-points {
+            list-style: none;
+        }
+        
+        .project-points li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+            color: #555;
+        }
+        
+        .project-points li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .summary-text {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            line-height: 1.7;
+            text-align: justify;
+        }
+        
+        .education-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .degree {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .college {
+            color: #3498db;
+            margin-bottom: 5px;
+        }
+        
+        .year {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .name {
+                font-size: 2.2em;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .job-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+            
+            .profile-section {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .profile-picture {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .profile-info {
+                min-width: auto;
+            }
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .cv-container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .header {
+                background: #2c3e50 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <header class="header">
+            <div class="header-content">
+                <div class="profile-section">
+                    <div class="profile-picture" onclick="document.getElementById('profileUpload').click()">
+                        <div class="upload-text">📷<br>Add<br>Photo</div>
+                        <input type="file" id="profileUpload" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
+                    </div>
+                    <div class="profile-info">
+                        <h1 class="name">Magesh Shanmugam C</h1>
+                        <p class="title">Senior Software Developer & Full-Stack Engineer</p>
+                        <div class="experience-badge">8+ Years Experience</div>
+                    </div>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📧</span> mageshshanmugam.c@gmail.com
+                    </div>
+                    <div class="contact-item">
+                        <span>📱</span> +91 9566995198
+                    </div>
+                    <div class="contact-item">
+                        <span>💼</span> LinkedIn: Magesh Shanmugam C
+                    </div>
+                    <div class="contact-item">
+                        <span>🌍</span> Indian National
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <aside class="sidebar">
+                <section class="section">
+                    <h2 class="section-title">Technical Skills</h2>
+                    <div class="skills-grid">
+                        <div class="skill-item">.NET Core</div>
+                        <div class="skill-item">C#</div>
+                        <div class="skill-item">Python</div>
+                        <div class="skill-item">Go</div>
+                        <div class="skill-item">React.js</div>
+                        <div class="skill-item">Angular</div>
+                        <div class="skill-item">JavaScript</div>
+                        <div class="skill-item">SQL Server</div>
+                        <div class="skill-item">MongoDB</div>
+                        <div class="skill-item">Neo4j</div>
+                        <div class="skill-item">GraphDB</div>
+                        <div class="skill-item">Azure</div>
+                        <div class="skill-item">AWS</div>
+                        <div class="skill-item">Terraform</div>
+                        <div class="skill-item">Docker</div>
+                        <div class="skill-item">Kubernetes</div>
+                        <div class="skill-item">MQTT</div>
+                        <div class="skill-item">RabbitMQ</div>
+                        <div class="skill-item">SSIS</div>
+                        <div class="skill-item">Grafana</div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Certifications</h2>
+                    <div class="cert-item">AZ-900 Azure Fundamentals</div>
+                    <div class="cert-item">AWS Certified Developer Associate</div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Education</h2>
+                    <div class="education-item">
+                        <div class="degree">B.E Electronics & Communication Engineering</div>
+                        <div class="college">Rajalakshmi Engineering College, Chennai</div>
+                        <div class="year">2012 - 2016</div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Core Competencies</h2>
+                    <div class="project-points">
+                        <li>Full-Stack Development</li>
+                        <li>Cloud Architecture</li>
+                        <li>Microservices Design</li>
+                        <li>Database Management</li>
+                        <li>DevOps & CI/CD</li>
+                        <li>Team Leadership</li>
+                        <li>Project Management</li>
+                        <li>Code Reviews</li>
+                    </div>
+                </section>
+            </aside>
+
+            <main class="content">
+                <section class="section">
+                    <h2 class="section-title">Professional Summary</h2>
+                    <div class="summary-text">
+                        Seasoned Software Developer with 8+ years of comprehensive experience in full-stack development, cloud technologies, and enterprise applications. Proven expertise in leading development teams, managing complex projects from requirements gathering to delivery, and architecting scalable solutions using modern technologies. Strong background in .NET ecosystem, Python, Go, and frontend frameworks with extensive experience in cloud platforms (Azure, AWS) and containerization technologies.
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Professional Experience</h2>
+                    
+                    <div class="job">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Software Technologist-II</div>
+                                <div class="company">PHILIPS</div>
+                            </div>
+                            <div class="duration">Feb 2024 - Present</div>
+                        </div>
+                        <div class="project">
+                            <div class="project-title">UDM (Universal Data Manager)</div>
+                            <div class="project-duration">Feb 2024 - Present</div>
+                            <ul class="project-points">
+                                <li>Architected and implemented fleet management system using Go for API development and Terraform for Infrastructure as Code</li>
+                                <li>Integrated Grafana for comprehensive metrics visualization and automated infrastructure provisioning triggers</li>
+                                <li>Developed robust .NET APIs for cloud data backup to S3, ensuring data reliability and disaster recovery</li>
+                                <li>Led end-to-end development activities with focus on scalability and performance optimization</li>
+                            </ul>
+                        </div>
+                        <div class="project">
+                            <div class="project-title">IDM (IntelliSpace Device Management)</div>
+                            <div class="project-duration">Feb 2024 - Present</div>
+                            <ul class="project-points">
+                                <li>Developed comprehensive service monitoring tool using Python backend and Angular 6 frontend for PACS system device management</li>
+                                <li>Implemented asynchronous APIs for real-time device monitoring and alert generation across enterprise healthcare infrastructure</li>
+                                <li>Led critical cloud migration project from CloudFoundry to AWS, ensuring zero-downtime transition and improved scalability</li>
+                                <li>Architected intelligent alerting system that proactively identifies device malfunctions and performance degradation</li>
+                                <li>Enhanced system reliability by 60% through automated monitoring and predictive failure detection</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Software Engineer</div>
+                                <div class="company">SIEMENS TECHNOLOGIES & SERVICES Pvt Ltd.</div>
+                            </div>
+                            <div class="duration">May 2021 - Feb 2024</div>
+                        </div>
+                        <div class="project">
+                            <div class="project-title">SIPROTEC</div>
+                            <div class="project-duration">Sep 2023 - Feb 2024</div>
+                            <ul class="project-points">
+                                <li>Developed sophisticated Angular UI for configuration management with responsive design</li>
+                                <li>Containerized applications using Docker and orchestrated with Kubernetes for scalability</li>
+                                <li>Implemented high-performance .NET Core APIs with comprehensive error handling</li>
+                            </ul>
+                        </div>
+                        <div class="project">
+                            <div class="project-title">SIMIT+</div>
+                            <div class="project-duration">May 2021 - Aug 2023</div>
+                            <ul class="project-points">
+                                <li>Built enterprise-grade APIs from scratch using .NET Core with microservices architecture</li>
+                                <li>Integrated multiple database systems: MongoDB for document storage and Neo4j for graph data</li>
+                                <li>Implemented JWT-based authentication system with role-based access control</li>
+                                <li>Achieved significant performance improvements and enhanced JSON API compliance</li>
+                                <li>Successfully containerized applications using Docker for consistent deployment</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Development Engineer</div>
+                                <div class="company">Pramati Technologies Pvt Ltd.</div>
+                            </div>
+                            <div class="duration">Dec 2019 - Apr 2021</div>
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Aon Insurance Platform</div>
+                            <div class="project-duration">Aug 2020 - Apr 2021</div>
+                            <ul class="project-points">
+                                <li>Architected and implemented hosted services for automated scheduled job processing</li>
+                                <li>Optimized API performance through strategic implementation of RabbitMQ message queuing</li>
+                                <li>Enhanced system reliability and reduced processing time by 40%</li>
+                            </ul>
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Brown & Brown Insurance</div>
+                            <div class="project-duration">Jan 2020 - Jul 2020</div>
+                            <ul class="project-points">
+                                <li>Developed comprehensive B2B authentication system for both UI and API layers</li>
+                                <li>Implemented granular role-based access control for multi-tenant web application</li>
+                                <li>Created reusable React.js components improving development efficiency by 30%</li>
+                                <li>Successfully containerized application using Docker for streamlined deployment</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Project Engineer</div>
+                                <div class="company">Wipro Technologies</div>
+                            </div>
+                            <div class="duration">Jun 2017 - Nov 2019</div>
+                        </div>
+                        <div class="project">
+                            <div class="project-title">GetHelp Multi-User Platform</div>
+                            <div class="project-duration">Aug 2017 - Nov 2019</div>
+                            <ul class="project-points">
+                                <li>Developed feature-rich web application using ASP.NET MVC with Kendo UI components</li>
+                                <li>Created robust SSIS packages for automated data integration and ETL processes</li>
+                                <li>Developed Windows services for background job processing and scheduling</li>
+                                <li>Designed and implemented complex database objects including stored procedures, functions, and triggers</li>
+                                <li>Successfully led cloud migration from on-premises infrastructure to Microsoft Azure</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Key Responsibilities & Leadership</h2>
+                    <ul class="project-points">
+                        <li><strong>Individual Contributor:</strong> Delivered end-to-end development solutions with focus on quality and performance</li>
+                        <li><strong>Team Management:</strong> Mentored development teams and managed resource allocation for optimal productivity</li>
+                        <li><strong>Project Management:</strong> Led requirement gathering sessions with clients, conducted R&D, provided accurate estimations, and ensured timely delivery</li>
+                        <li><strong>Code Management:</strong> Established best practices for Git collaboration, code design, development standards, and comprehensive code reviews</li>
+                    </ul>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const profilePicture = document.querySelector('.profile-picture');
+                    profilePicture.innerHTML = `<img src="${e.target.result}" alt="Profile Picture">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+</html>
